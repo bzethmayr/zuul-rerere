@@ -1,0 +1,53 @@
+zuul:
+  routes:
+    foo-service:
+      path: /foo/api/**
+      serviceId: foo-service
+    bar-service:
+      path: /bar/api/**
+      url: http://localhost:8810
+  routes:
+    foo-2:
+      path: /foo/web/**
+      serviceId: foo-heavy
+    foo-web-1:
+      path: /foo/**
+      url: http://localhost:8901
+    bar:
+      path: /bar/**
+      serviceId: bar-web
+
+hystrix:
+  command:
+    myusers-service:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+foo-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://localhost:8801,http://localhost:8802
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
+
+foo-heavy:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://localhost:8911,http://localhost:8912
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
+
+bar-web:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://localhost:8921,http://localhost:8922
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
