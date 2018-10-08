@@ -6,7 +6,6 @@ zuul:
     bar-service:
       path: /bar/api/**
       url: http://localhost:8810
-  routes:
     foo-2:
       path: /foo/web/**
       serviceId: foo-heavy
