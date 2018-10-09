@@ -44,6 +44,7 @@ import static org.springframework.http.HttpHeaders.REFERER;
 @Service
 @Slf4j
 public class ReReReFilter extends ZuulFilter {
+    //** Well that was fun. See {@link AController} for the winning approach
 
     private final ZuulProperties zuulConfig;
     private final ReReReFilterConfiguration config;

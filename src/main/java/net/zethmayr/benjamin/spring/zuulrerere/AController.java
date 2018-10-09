@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import static org.springframework.http.HttpHeaders.REFERER;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller("/**")
 @Slf4j
@@ -33,9 +32,7 @@ public class AController {
 
     @RequestMapping
     public String root(final @Autowired HttpServletRequest request) {
-        LOG.info("hayy");
         val requestUri = request.getRequestURI();
-        LOG.info("requestUri is {}", requestUri);
         if (requestUri.equals("/")) {
             throw new EverythingIsFineException();
         }
