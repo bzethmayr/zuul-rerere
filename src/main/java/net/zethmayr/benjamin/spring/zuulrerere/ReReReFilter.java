@@ -17,14 +17,14 @@ import static org.springframework.http.HttpHeaders.REFERER;
 public class ReReReFilter extends ZuulFilter {
 
     private final ZuulProperties zuulConfig;
-    //private final ReReReFilterConfiguration config;
+    private final ReReReFilterConfiguration config;
 
     public ReReReFilter(
-            final @Autowired ZuulProperties zuulConfig
-            //final @Autowired ReReReFilterConfiguration config
+            final @Autowired ZuulProperties zuulConfig,
+            final @Autowired ReReReFilterConfiguration config
     ) {
         this.zuulConfig = zuulConfig;
-        //this.config = config;
+        this.config = config;
 
     }
 
