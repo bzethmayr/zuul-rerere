@@ -25,9 +25,9 @@ zuul:
     bar-web:
       path: /bar/**
       serviceId: bar-web
-    nothing:
-      path: /**
-      url: http://localhost:6666
+#    nothing:
+#      path: /**
+#      url: http://localhost:6666
 
 hystrix:
   command:

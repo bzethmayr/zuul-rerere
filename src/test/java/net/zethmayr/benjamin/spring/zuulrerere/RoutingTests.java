@@ -96,4 +96,9 @@ public class RoutingTests extends MockServiceEnvironment {
         val response = http.exchange(zuul + "/static/js/js.js", GET, request, String.class);
         assertThat(response.getBody(), either(is(barWeb1.toString())).or(is(barWeb2.toString())));
     }
+
+    @Test
+    public void canHitOurRoot() {
+        val response = http.getForEntity(zuul + "/", String.class);
+    }
 }
