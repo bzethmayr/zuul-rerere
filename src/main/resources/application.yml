@@ -1,3 +1,7 @@
+logging:
+  level:
+    net.zethmayr.benjamin.spring.zuulrerere: TRACE
+
 server:
   port: 9000
 
@@ -15,15 +19,15 @@ zuul:
     bar-service:
       path: /bar/api/**
       url: http://localhost:8810
-    foo-2:
-      path: /foo/web/**
-      serviceId: foo-heavy
-    foo-web-1:
+    foo-web:
       path: /foo/**
       url: http://localhost:8901
-    bar:
+    bar-web:
       path: /bar/**
       serviceId: bar-web
+    nothing:
+      path: /**
+      url: http://localhost:6666
 
 hystrix:
   command:
@@ -37,15 +41,6 @@ foo-service:
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
     listOfServers: http://localhost:8801,http://localhost:8802
-    ConnectTimeout: 1000
-    ReadTimeout: 3000
-    MaxTotalHttpConnections: 500
-    MaxConnectionsPerHost: 100
-
-foo-heavy:
-  ribbon:
-    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
-    listOfServers: http://localhost:8911,http://localhost:8912
     ConnectTimeout: 1000
     ReadTimeout: 3000
     MaxTotalHttpConnections: 500

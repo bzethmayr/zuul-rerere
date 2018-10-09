@@ -17,15 +17,13 @@ public abstract class MockServiceEnvironment {
     @ClassRule
     public static WireMockClassRule barService = new WireMockClassRule(localhost(8810));
     @ClassRule
-    public static WireMockClassRule fooWeb1 = new WireMockClassRule(localhost(8901));
-    @ClassRule
-    public static WireMockClassRule fooHeavy1 = new WireMockClassRule(localhost(8911));
-    @ClassRule
-    public static WireMockClassRule fooHeavy2 = new WireMockClassRule(localhost(8912));
+    public static WireMockClassRule fooWeb = new WireMockClassRule(localhost(8901));
     @ClassRule
     public static WireMockClassRule barWeb1 = new WireMockClassRule(localhost(8921));
     @ClassRule
     public static WireMockClassRule barWeb2 = new WireMockClassRule(localhost(8922));
+    @ClassRule
+    public static WireMockClassRule nothing = new WireMockClassRule(localhost(6666));
 
     private static WireMockConfiguration localhost(final int port) {
         return WireMockConfiguration.options()
@@ -65,8 +63,8 @@ public abstract class MockServiceEnvironment {
 
     @Before
     public void setUp() {
-        rootOk(fooServiceA, fooServiceB, barService, fooWeb1, fooHeavy1, fooHeavy2, barWeb1, barWeb2);
-        hasIndex(fooWeb1, barWeb1, barWeb2);
-        hasJs(fooHeavy1, fooHeavy2, barWeb1, barWeb2);
+        rootOk(fooServiceA, fooServiceB, barService, fooWeb, barWeb1, barWeb2);
+        hasIndex(fooWeb, barWeb1, barWeb2);
+        hasJs(fooWeb, barWeb1, barWeb2);
     }
 }
