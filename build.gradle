@@ -9,10 +9,13 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
-
+plugins {
+	id 'io.franzbecker.gradle-lombok' version '1.14'
+}
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+
 apply plugin: 'io.spring.dependency-management'
 
 group = 'net.zethmayr.benjamin.spring'
@@ -23,6 +26,10 @@ repositories {
 	mavenCentral()
 }
 
+lombok {
+	version = '1.18.2'
+	sha256 = ""
+}
 
 ext {
 	springCloudVersion = 'Finchley.SR1'
@@ -30,7 +37,9 @@ ext {
 
 dependencies {
 	implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	//testImplementation('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
 	testImplementation('com.github.tomakehurst:wiremock-standalone:2.19.0')
 }
 
