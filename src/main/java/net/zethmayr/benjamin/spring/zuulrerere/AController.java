@@ -47,9 +47,9 @@ public class AController {
         }
         LOG.info("referrer route is {}", route);
         val id = route.getId();
-        //val location = route.getLocation();
-        String location = route.getLocation();
+        val location = route.getLocation();
         LOG.info("id is {}, requestUri is {}, location is {}", id, requestUri, location);
+        // This is terribly, terribly dangerous. But, this was POC code.
         return "forward:" + route.getFullPath().replace(route.getPath(),requestUri);
     }
 
